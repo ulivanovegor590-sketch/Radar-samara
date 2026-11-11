@@ -1,0 +1,474 @@
+Обновление данных каждые 60 секунд будет включено после
+        подключения и проверки официального источника.
+      </p>
+    </div>
+  </section>
+
+  <section class="content" id="alerts">
+    <div class="message">
+      <h3>Официальные оповещения</h3>
+      <p>
+        Сообщения пока не загружаются автоматически.
+        Это не означает, что опасности отсутствуют.
+        Проверяйте актуальную информацию у официальных служб.
+      </p>
+      <a class="button"
+         href="https://63.mchs.gov.ru/"
+         target="_blank" rel="noopener">
+        Открыть сайт МЧС Самарской области ↗
+      </a>
+    </div>
+  </section>
+
+  <section class="content" id="sources">
+    <div class="message source">
+      <div>
+        <h3>МЧС России — Самарская область</h3>
+        <p>Официальный региональный сайт ведомства</p>
+      </div>
+      <a href="https://63.mchs.gov.ru/"
+         target="_blank" rel="noopener">Перейти ↗</a>
+    </div>
+
+    <div class="message source">
+      <div>
+        <h3>МЧС России</h3>
+        <p>Официальный федеральный сайт</p>
+      </div>
+      <a href="https://mchs.gov.ru/"
+         target="_blank" rel="noopener">Перейти ↗</a>
+    </div>
+  </section>
+
+  <section class="content" id="about">
+    <div class="message">
+      <h3>РАДАР САМАРА</h3>
+      <p>
+        Независимый информационный интерфейс для удобного просмотра
+        официальных региональных оповещений.
+      </p>
+      <p style="margin-top:12px">
+        Проект не является официальным ресурсом МЧС или государственных
+        органов. Приоритет всегда имеют сообщения и инструкции
+        государственных служб.
+      </p>
+    </div>
+  </section>
+
+</main>
+
+<footer>
+  РАДАР САМАРА · Информационный проект<br>
+  Не является официальным ресурсом государственных органов.<br>
+  При чрезвычайной ситуации следуйте указаниям экстренных служб.
+</footer>
+
+<script>
+  // Часы
+  function updateClock() {
+    const now = new Date();
+    document.getElementById("clock").textContent =
+      now.toLocaleTimeString("ru-RU", {
+        hour: "2-digit",
+        minute: "2-digit",
+        second: "2-digit"
+      });
+  }
+
+  updateClock();
+  setInterval(updateClock, 1000);
+
+  // Переключение вкладок
+  const tabs = document.querySelectorAll(".tab");
+  const contents = document.querySelectorAll(".content");
+
+  tabs.forEach(tab => {
+    tab.addEventListener("click", () => {
+      tabs.forEach(item => item.classList.remove("active"));
+      contents.forEach(item => item.classList.remove("active"));
+
+      tab.classList.add("active");
+
+      const selected = document.getElementById(
+        tab.dataset.tab
+      );
+
+      if (selected) selected.classList.add("active");
+    });
+  });
+</script>
+
+</body>
+</html>
+22:10
+color: var(--muted);
+      border-radius: 9px;
+      padding: 11px 16px;
+      cursor: pointer;
+      font-size: 13px;
+    }
+
+    .tab.active {
+      background: #18365d;
+      color: white;
+      border-color: var(--blue);
+    }
+
+    .content { display: none; }
+    .content.active { display: block; }
+
+    .message {
+      padding: 20px;
+      background: var(--panel);
+      border: 1px solid var(--border);
+      border-radius: 13px;
+      margin-bottom: 12px;
+      line-height: 1.6;
+    }
+
+    .message h3 {
+      margin: 0 0 10px;
+      font-size: 16px;
+    }
+
+    .message p {
+      color: var(--muted);
+      font-size: 13px;
+      margin: 0;
+    }
+
+    .button {
+      display: inline-block;
+      text-decoration: none;
+      color: white;
+      background: #1768ce;
+      padding: 12px 17px;
+      border-radius: 9px;
+      font-size: 13px;
+      margin-top: 13px;
+    }
+
+    .button:hover { background: #287ee8; }
+
+    .source {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      gap: 12px;
+      flex-wrap: wrap;
+    }
+
+    .source a {
+      color: #79b4ff;
+      text-decoration: none;
+      font-size: 13px;
+    }
+
+    footer {
+      border-top: 1px solid var(--border);
+      margin-top: 35px;
+      padding: 22px 5%;
+      text-align: center;
+      color: var(--muted);
+      font-size: 12px;
+      line-height: 1.7;
+    }
+
+    @media (max-width: 700px) {
+      header { padding: 17px 4%; }
+      h1 { font-size: 15px; }
+      .clock { font-size: 14px; }
+      main { padding: 20px 4%; }
+      .grid { grid-template-columns: 1fr; }
+      .map { min-height: 250px; }
+    }
+  </style>
+</head>
+
+<body>
+
+<header>
+  <div class="brand">
+    <div class="logo">📡 </div>
+    <div>
+      <h1>РАДАР САМАРА</h1>
+      <div class="subtitle">Региональный информационный центр</div>
+    </div>
+  </div>
+  <div class="clock" id="clock">--:--:--</div>
+</header>
+
+<main>
+
+  <div class="notice">
+    ⚠️  <strong>Демонстрационная версия.</strong>
+    Автоматическое получение сообщений пока не подключено.
+    Для проверки обстановки пользуйтесь официальными источниками.
+  </div>
+
+  <div class="section-title">Состояние информационной системы</div>
+
+  <div class="grid">
+    <div class="card">
+      <div class="card-label">Регион</div>
+      <div class="card-value">Самарская область</div>
+      <div class="card-description">Российская Федерация</div>
+    </div>
+
+    <div class="card">
+      <div class="card-label">Статус данных</div>
+      <div class="card-value">
+        <span class="status-dot"></span>Нет данных
+      </div>
+      <div class="card-description">
+        Официальный источник ещё не подключён
+      </div>
+    </div>
+
+    <div class="card">
+      <div class="card-label">Последняя проверка</div>
+      <div class="card-value">Не выполнялась</div>
+      <div class="card-description">
+        Время автоматической проверки пока недоступно
+      </div>
+    </div>
+  </div>
+
+  <div class="section-title">Региональная карта</div>
+
+  <div class="map-panel">
+    <div class="map">
+      <div class="map-symbol">🗺️ </div>
+      <strong>Самарская область</strong>
+      <p>
+        Здесь будет размещена географическая карта региона.
+        Сейчас карта носит демонстрационный характер.
+        Реальные данные и координаты объектов не отображаются.
+      </p>
+    </div>
+  </div>
+
+  <div class="tabs">
+    <button class="tab active" data-tab="overview">Обзор</button>
+    <button class="tab" data-tab="alerts">Оповещения</button>
+    <button class="tab" data-tab="sources">Источники</button>
+    <button class="tab" data-tab="about">О проекте</button>
+  </div>
+
+  <section class="content active" id="overview">
+    <div class="message">
+      <h3>Информационная панель</h3>
+      <p>
+        Система предназначена для отображения официальных региональных
+        предупреждений и информационных сообщений.
+      </p>
+    </div>
+
+    <div class="message">
+      <h3>Автоматическое обновление</h3>
+      <p>
+22:10
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="theme-color" content="#090e18">
+  <title>РАДАР САМАРА — Официальные оповещения</title>
+  <style>
+    :root {
+      --bg: #090e18;
+      --panel: #111a29;
+      --panel2: #162235;
+      --border: #26364b;
+      --text: #edf3fc;
+      --muted: #8c9bb0;
+      --blue: #3988ff;
+      --green: #37c994;
+      --orange: #ffb454;
+      --red: #ff626c;
+    }
+
+    * { box-sizing: border-box; }
+
+    body {
+      margin: 0;
+      background: var(--bg);
+      color: var(--text);
+      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+    }
+
+    header {
+      padding: 22px 5%;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 15px;
+      border-bottom: 1px solid var(--border);
+      background: #0c1421;
+    }
+
+    .brand {
+      display: flex;
+      align-items: center;
+      gap: 13px;
+    }
+
+    .logo {
+      width: 44px;
+      height: 44px;
+      display: grid;
+      place-items: center;
+      background: #18345b;
+      border: 1px solid #3269ad;
+      border-radius: 13px;
+      font-size: 23px;
+    }
+
+    h1 {
+      margin: 0;
+      font-size: 19px;
+      letter-spacing: 1.5px;
+    }
+
+    .subtitle {
+      color: var(--muted);
+      font-size: 12px;
+      margin-top: 5px;
+    }
+
+    .clock {
+      color: #a9caff;
+      font-size: 17px;
+      font-weight: 600;
+      white-space: nowrap;
+    }
+
+    main {
+      max-width: 1250px;
+      margin: auto;
+      padding: 26px 5%;
+    }
+
+    .notice {
+      padding: 15px 18px;
+      border: 1px solid #66502e;
+      background: #251e14;
+      color: #ffd69b;
+      border-radius: 12px;
+      margin-bottom: 22px;
+      font-size: 13px;
+      line-height: 1.6;
+    }
+
+    .section-title {
+      font-size: 14px;
+      color: var(--muted);
+      letter-spacing: 1.5px;
+      margin: 27px 0 13px;
+      text-transform: uppercase;
+    }
+
+    .grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 15px;
+    }
+
+    .card {
+      background: var(--panel);
+      border: 1px solid var(--border);
+      border-radius: 15px;
+      padding: 19px;
+      min-width: 0;
+    }
+
+    .card-label {
+      color: var(--muted);
+      font-size: 13px;
+      margin-bottom: 14px;
+    }
+
+    .card-value {
+      font-size: 20px;
+      font-weight: 650;
+    }
+
+    .card-description {
+      color: var(--muted);
+      font-size: 12px;
+      margin-top: 9px;
+      line-height: 1.5;
+    }
+
+    .status-dot {
+      display: inline-block;
+      width: 9px;
+      height: 9px;
+      border-radius: 50%;
+      background: var(--orange);
+      margin-right: 8px;
+    }
+
+    .map-panel {
+      background: var(--panel);
+      border: 1px solid var(--border);
+      border-radius: 17px;
+      padding: 20px;
+    }
+
+    .map {
+      min-height: 300px;
+      background:
+        radial-gradient(ellipse at center, #1a3551 0%, #10243a 45%, #0d1929 100%);
+      border: 1px solid #294766;
+      border-radius: 12px;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      text-align: center;
+      padding: 25px;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .map::before, .map::after {
+      content: "";
+      position: absolute;
+      width: 150%;
+      height: 1px;
+      background: #31506b;
+      opacity: .35;
+      transform: rotate(-20deg);
+    }
+
+    .map::after { transform: rotate(25deg); }
+
+    .map-symbol {
+      font-size: 52px;
+      margin-bottom: 14px;
+      z-index: 1;
+    }
+
+    .map strong, .map p {
+      z-index: 1;
+    }
+
+    .map p {
+      max-width: 400px;
+      color: #a4b6ca;
+      font-size: 13px;
+      line-height: 1.6;
+    }
+
+    .tabs {
+      display: flex;
+      gap: 9px;
+      flex-wrap: wrap;
+      margin: 22px 0;
+    }
+
+    .tab {
+      background: var(--panel);
+      border: 1px solid var(--border);
